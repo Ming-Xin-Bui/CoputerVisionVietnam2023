@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-    body {
-      margin: auto;
-      width: 640px;
-      padding: 50px;
-      font-family: 'Arial', sans-serif;
-      color: #33475b;
-    }
-    </style>
-
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
 <style>
-
     .imageContainer {
-        display: flex;
-        justify-content: center;
-        width: 30%;
-        height: 70%;
+        width: auto;
+        text-align: center;
+        padding: 20px;
     }
-    .imageclass {
-        padding: 10px;
 
-        width: 100%;
+    .imageclass {
         height: auto;
+        max-width: 50%;
+    }
+
+    div {
+        text-align: center;
     }
 
 </style>
-
 <div class="imageContainer">
-    <img src="{{ image }}" width="600" height="300" class="imageclass">
+    <img src="{{ image }}" class="imageclass">
+    <!-- <img src="../static/pictures/AKJX1203.JPG" class="imageclass"> -->
 </div>
 <div>Final Caption: {{ fc }}</div>
 <div>Best Caption: {{ bc }}</div>
+
+<script>
+    function onClickFunction() {
+        location.replace("http://localhost:8080");
+    }
+</script>
+
+<div>
+ <button style="margin: 10px" class="homeButton" onclick="onClickFunction()"/>Back to home</button>
+</div>
 </body>
 </html>
