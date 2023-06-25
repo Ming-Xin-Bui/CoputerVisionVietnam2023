@@ -211,7 +211,7 @@ def processing():
         raise Exception('run_type must be caption or controllable!')
 
     # @title Output
-    Image.open(img_path).show()
+    # Image.open(img_path).show()
     print("Final Caption\n")
     for i in range(len(FinalCaption)):
         print(f"{FinalCaption[i]}\n")
