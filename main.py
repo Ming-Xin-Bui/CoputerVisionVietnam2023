@@ -219,7 +219,7 @@ def processing():
     for i in range(len(BestCaption)):
         print(f"{BestCaption[i]}\n")
 
-    return render_template("Result.html", fc=FinalCaption, bc=BestCaption, image=img_path)
+    return render_template("Result.html", fc=FinalCaption[0], bc=BestCaption[0], image=img_path)
 
 
 # if not uploaded:
