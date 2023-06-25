@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+    body {
+      margin: auto;
+      width: 640px;
+      padding: 50px;
+      font-family: 'Arial', sans-serif;
+      color: #33475b;
+    }
+    </style>
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-<img src="{{ image }}">
-<output>Final Caption: {{ fc }}</output>
-<output>Best Caption: {{ bc }}</output>
+<style>
+
+    .imageContainer {
+        display: flex;
+        justify-content: center;
+        width: 30%;
+        height: 70%;
+    }
+    .imageclass {
+        padding: 10px;
+
+        width: 100%;
+        height: auto;
+    }
+
+</style>
+
+<div class="imageContainer">
+    <img src="{{ image }}" width="600" height="300" class="imageclass">
+</div>
+<div>Final Caption: {{ fc }}</div>
+<div>Best Caption: {{ bc }}</div>
 </body>
 </html>

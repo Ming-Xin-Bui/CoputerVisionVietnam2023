@@ -120,10 +120,12 @@ def index():
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
+
     if request.method == 'POST':
-        f = request.files['file']
+        f = request.files['fileBtn']
         if f.filename == '':
             return render_template("home.html", message="Please choose a picture")
+
         app.config['UPLOAD_FOLDER'] = os.path.join('static', 'pictures')
         # Pictures is in folder /static/pictures
         if not os.path.isdir(app.config['UPLOAD_FOLDER']):

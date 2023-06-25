@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}">
     <meta charset="UTF-8">
-    <h1>Configure parameters</h1>
+    <h2>Configure parameters</h2>
 </head>
 <body>
  <form class = "form-inline" method = "POST" action="{{ url_for('configure') }}">
-
-     <label for="isGpu">GPU Usage(DO NOT ENABLE IF YOU DON'T HAVE NVIDIA GPU):</label>
+<p class="lead"> DO NOT ENABLE GPU IF YOU DON'T HAVE CUDA </p>
+     <div id="start">
+     <label for="isGpu">GPU Usage</label>
     <select name="isGpu" id="isGpu" data-role="slider">
 	    <option value= 0 >Off</option>
 	    <option value= 1 >On</option>
         </select>
+</div>
 
+     <style>
+         div.dropdown {
+             margin: 1%;
+         }
+     </style>
+
+<div class="dropdown">
     <select name="runType" id="runType">
       <option value="caption">Caption</option>
       <option value="controllable">Controllable</option>
@@ -33,19 +43,68 @@
       <option value="shuffle">Shuffle</option>
       <option value="random">Random</option>
       </select>
+</div>
+     <div>
+     </div>
+     <style>
+         ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          display: inline-block;
+         }
 
-     <input type = "range" min = "0.0" max = "1.0" step = "0.01" value = "0.55" name = "alpha" oninput="this.nextElementSibling.value = this.value" />
-     <output>0.55</output>
-     <input type = "range" min = "1.0" max = "5.0" step = "0.5" value = 2.5 name = "beta" oninput="this.nextElementSibling.value = this.value" />
-     <output>2.5</output>
-     <input type = "range" min = "1.0" max = "10.0" step = "0.5" value = 5.0 name = "gamma" oninput="this.nextElementSibling.value = this.value" />
-     <output>5.0</output>
-     <input type = "range" min = "1.0" max = "5.0" step = "1.0" value = 2 name = "samplesNum" oninput="this.nextElementSibling.value = this.value" />
-     <output>2</output>
-     <input type = "range" min = "5.0" max = "15.0" step = "1.0" value = 15 name = "length" oninput="this.nextElementSibling.value = this.value" />
-     <output>15</output>
-     <input type = "range" min = "1.0" max = "15.0" step = "1.0" value = 5 name = "numIterations" oninput="this.nextElementSibling.value = this.value" />
-     <output>5</output>
+         li {
+             float: left;
+             display: block;
+             text-align: center;
+             padding: 16px;
+             margin-inline: 30px;
+         }
+
+         .container {
+             margin-left: auto;
+             margin-right: auto;
+         }
+     </style>
+     <table class="container">
+             <tr>
+                 <td>
+                    <input type = "range" min = "0.0" max = "1.0" step = "0.01" value = "0.55" name = "alpha" oninput="this.nextElementSibling.value = this.value" />
+                    <output>0.55</output>
+                 </td>
+                 <td>
+                    <input type = "range" min = "1.0" max = "5.0" step = "0.5" value = 2.5 name = "beta" oninput="this.nextElementSibling.value = this.value" />
+                    <output>2.5</output>
+                 </td>
+                 <td>
+                    <input type = "range" min = "1.0" max = "10.0" step = "0.5" value = 5.0 name = "gamma" oninput="this.nextElementSibling.value = this.value" />
+                    <output>5.0</output>
+                 </td>
+                 <td>
+                    <input type = "range" min = "1.0" max = "5.0" step = "1.0" value = 2 name = "samplesNum" oninput="this.nextElementSibling.value = this.value" />
+                    <output>2</output>
+                 </td>
+                 <td>
+                     <input type = "range" min = "5.0" max = "15.0" step = "1.0" value = 15 name = "length" oninput="this.nextElementSibling.value = this.value" />
+                     <output>15</output>
+                 </td>
+                 <td>
+                     <input type = "range" min = "1.0" max = "15.0" step = "1.0" value = 5 name = "numIterations" oninput="this.nextElementSibling.value = this.value" />
+                     <output>5</output>
+                 </td>
+             </tr>
+             <tr>
+                 <td>alpha</td>
+                 <td>beta</td>
+                 <td>gamma</td>
+                 <td>sample number</td>
+                 <td>text length</td>
+                 <td>iterations</td>
+             </tr>
+     </table>
+
      <button type = "submit"> Submit </button>
  </form>
 </body>
