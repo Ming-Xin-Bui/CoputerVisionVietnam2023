@@ -1,4 +1,4 @@
-This is a educational project
+This is an educational project
 Credits to joeyz0z for his repository https://github.com/joeyz0z/ConZIC
 
 To test it locally, run virtual environment:
