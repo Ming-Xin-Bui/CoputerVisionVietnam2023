@@ -6,4 +6,4 @@ torch~=1.13.1
 requests~=2.31.0
 numpy~=1.21.6
 colorlog~=6.7.0
-Werkzeug~=2.3.6
+Werkzeug~=2.2.3
