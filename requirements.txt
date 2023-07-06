@@ -4,6 +4,6 @@ transformers~=4.30.2
 pillow~=9.5.0
 torch~=1.13.1
 requests~=2.31.0
-numpy~=1.23.5
+numpy~=1.21.6
 colorlog~=6.7.0
 Werkzeug~=2.3.6
