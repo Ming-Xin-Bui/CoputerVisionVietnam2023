@@ -9,5 +9,5 @@ To test it locally on localhost:8080, run on the terminal from the project root:
 
 Also in this repo, there's a ipynb file for a google colab version.
 
-Web deployments, formatting from google colab notebook to normal python and bug fixes by Ming Xin Bui, 2022T049.
-&emsp; See other branch for gcloud compatible version.
+Web deployments, formatting from google colab notebook to normal python and bug fixes by Ming Xin Bui, 2022T049.  
+See other branch for gcloud compatible version.
