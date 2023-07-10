@@ -7,26 +7,51 @@
 <body>
 
 <style>
+    html, body {
+	    padding: 0;
+        margin: 0;
+        height: 100%;
+    }
+
     .imageContainer {
-        width: auto;
+        margin-left: 30%;
+        margin-right: 30%;
+        height: 50%;
         text-align: center;
         padding: 20px;
     }
 
     .imageclass {
-        height: auto;
-        max-width: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
     div {
         font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
-        font-size: 24px;
+        font-size: 16px;
+    }
+
+    .row {
+        width: 100%;
+        height: 50%;
+    }
+
+    .row div {
+        width: 29%;
+        height: 60%;
+        float: left;
+        text-align: center;
+        border-style: groove;
+        border-radius: 4px;
     }
 
 </style>
+
 <div class="imageContainer">
-<img src="{{ image }}" class="imageclass">
-<!-- <img src="../static/pictures/AKJX1203.JPG" class="imageclass">-->
+    <!-- <img src="{{ url_for('static', filename = image) }}" class="imageclass"> -->
+    <!-- <img src="../static/pictures/AGAO8348.JPG" class="imageclass"> -->
+    <img src="{{ image }}" class="imageclass">
 </div>
 <script>
     function onClickFunction() {
@@ -34,12 +59,14 @@
     }
 </script>
 
-<div style="padding-left: 380px; text-indent: -340px; margin-right: 40px">Final Caption: {{ fc }}</div>
-<div style="padding-left: 380px; text-indent: -340px; margin-right: 40px">Best Caption: {{ bc }}</div>
-
+<div class="row">
+    <div style="margin-left: 20%;">{{ fc }} </div>
+    <div style="margin-right: 20%;">{{ bc }} </div>
+</div>
 
 <div style="text-align: center">
- <button style="margin: 10px; font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; " class="homeButton" onclick="onClickFunction()"/>Back</button>
+    <button style="
+    margin: 8px; padding-bottom: 4px; font-size: 14px; font-weight: 500; font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; " class="homeButton" onclick="onClickFunction()"/>Back</button>
 </div>
 </body>
 </html>

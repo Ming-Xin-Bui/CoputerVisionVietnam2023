@@ -23,12 +23,15 @@ from werkzeug.utils import secure_filename
 from ConZIC import generate_caption, control_generate_caption, create_logger, set_seed
 from ConZIC.clip.clip import CLIP
 
+from google.cloud import storage
+
 # Commented out IPython magic to ensure Python compatibility.
 # @title Prepare the running enviroment
 
 img_name = ''
 upload_img_path = ''
 is_gpu = False  # @param {type:"boolean"}
+_BUCKET_NAME = 'vietnam2023sscomputervision'
 
 app = Flask(__name__)
 
@@ -120,22 +123,30 @@ def index():
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
-
     if request.method == 'POST':
         f = request.files['fileBtn']
         if f.filename == '':
             return render_template("home.html", message="Please choose a picture")
 
-        app.config['UPLOAD_FOLDER'] = os.path.join('static', 'pictures')
+        # app.config['UPLOAD_FOLDER'] = os.path.join('static', 'pictures')
         # Pictures is in folder /static/pictures
-        if not os.path.isdir(app.config['UPLOAD_FOLDER']):
-            os.makedirs(os.path.abspath(app.config['UPLOAD_FOLDER']))
-        f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+        # if not os.path.isdir(app.config['UPLOAD_FOLDER']):
+        #      os.makedirs(os.path.abspath(app.config['UPLOAD_FOLDER']))
+        # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+        # save to cloud storage
+        gcs_client = storage.Client()
+        storage_bucket = gcs_client.get_bucket(_BUCKET_NAME)
+        blob = storage_bucket.blob(f.filename)
+
+        c_type = f.content_type
+
+        blob.upload_from_string(f.read(), c_type)
 
         global img_name
         img_name = f.filename
         global upload_img_path
-        upload_img_path = os.path.join(app.config['UPLOAD_FOLDER'], img_name)
+        # upload_img_path = os.path.join(app.config['UPLOAD_FOLDER'], img_name)
+        uploaded_img_path = blob.public_url
 
         return render_template("Uploaded.html")
 
@@ -167,10 +178,10 @@ def processing():
     if run_type == "sentiment":
         run_type = args.sentiment_type
 
-    if not os.path.exists("ConZIC/logger"):
-        os.mkdir("ConZIC/logger")
+    # if not os.path.exists("ConZIC/logger"):
+    #     os.mkdir("ConZIC/logger")
     logger = create_logger(
-        "ConZIC/logger", 'demo_{}_{}_len{}_topk{}_alpha{}_beta{}_gamma{}_lmtemp{}_{}.log'.format(
+        "tmp/", 'demo_{}_{}_len{}_topk{}_alpha{}_beta{}_gamma{}_lmtemp{}_{}.log'.format(
             run_type, args.order, args.sentence_len,
             args.candidate_k, args.alpha, args.beta, args.gamma, args.lm_temperature,
             time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())))

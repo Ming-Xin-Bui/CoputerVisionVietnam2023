@@ -3,6 +3,8 @@ import os
 import colorlog
 import random
 import torch
+import google.cloud.logging
+from google.cloud.logging_v2.handlers import CloudLoggingHandler
 
 
 def create_logger(folder, filename):
@@ -15,6 +17,10 @@ def create_logger(folder, filename):
     }
 
     import logging
+
+    client = google.cloud.logging.Client()
+    client.setup_logging()
+
     logger = logging.getLogger('ConZIC')
     # %(filename)s$RESET:%(lineno)d
     # LOGFORMAT = "%(log_color)s%(asctime)s [%(log_color)s%(filename)s:%(lineno)d] | %(log_color)s%(message)s%(reset)s |"
@@ -26,11 +32,16 @@ def create_logger(folder, filename):
     stream.setFormatter(colorlog.ColoredFormatter(LOGFORMAT, datefmt='%d %H:%M', log_colors=log_colors))
 
     # print to log file
-    hdlr = logging.FileHandler(os.path.join(folder, filename))
-    hdlr.setLevel(LOG_LEVEL)
+    handler = CloudLoggingHandler(client)
+    handler.setLevel(LOG_LEVEL)
+    handler.setFormatter(logging.Formatter("%(message)s"))
+
+    # hdlr = logging.FileHandler(os.path.join(folder, filename))
+    # hdlr.setLevel(LOG_LEVEL)
     # hdlr.setFormatter(logging.Formatter("[%(asctime)s] %(message)s"))
-    hdlr.setFormatter(logging.Formatter("%(message)s"))
-    logger.addHandler(hdlr)
+    # hdlr.setFormatter(logging.Formatter("%(message)s"))
+    # logger.addHandler(hdlr)
+    logger.addHandler(handler)
     logger.addHandler(stream)
     return logger
 

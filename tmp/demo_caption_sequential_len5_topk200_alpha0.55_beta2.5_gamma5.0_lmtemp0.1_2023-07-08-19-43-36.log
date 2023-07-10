@@ -1,0 +1,10 @@
+Generating order:sequential
+Run type:caption
+Namespace(seed=42, batch_size=1, device='cpu', run_type='caption', prompt='Image of a', order='sequential', control_type='sentiment', pos_type=[['DET'], ['ADJ', 'NOUN'], ['NOUN'], ['VERB'], ['VERB'], ['ADV'], ['ADP'], ['DET', 'NOUN'], ['NOUN'], ['NOUN', '.'], ['.', 'NOUN'], ['.', 'NOUN']], sentiment_type='postive', samples_num=1, sentence_len=5, candidate_k=200, alpha=0.55, beta=2.5, gamma=5.0, lm_temperature=0.1, num_iterations=1, lm_model='bert-base-uncased', match_model='openai/clip-vit-base-patch32', caption_img_path='static\\pictures\\AGAO8348.JPG', stop_words_path='ConZIC/stop_words.txt', add_extra_stopwords=[])
+Processing: static\pictures\AGAO8348.JPG
+Sample 0: 
+iter 1, The 1-th image: A,clip score 0.248: [CLS] image of a large red face appeared. [SEP]
+Finished in 12.282s
+The 1-th image: A
+final caption: image of a large red face appeared.
+best caption: image of a large red face appeared.
